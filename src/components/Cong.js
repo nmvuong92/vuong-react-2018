@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {store} from '../store/store';
-import {CongAction} from '../actions/CongAction';
-import { CONG } from '../constaints/action-types';
+import {CongAction} from '../actions/CalcAction';
+import { CONG,TRU } from '../constaints/action-types';
 import {connect} from 'react-redux';
 //first retrieve the current state object
 
@@ -33,7 +33,7 @@ class Cong extends Component{
                 <button onClick={()=>{
                     store.dispatch(CongAction(this.state.x,this.state.y));
                 }}>+</button>
-                <strong>Result: {state.congReducer.result}</strong>
+                <strong>Result: {state.calcReducer.result}</strong>
             </div>
         );
     };

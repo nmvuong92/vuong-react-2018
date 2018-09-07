@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {store} from '../store/store';
 import {connect} from 'react-redux';
-import {TruAction} from '../actions/TruAction';
+import {TruAction} from '../actions/CalcAction';
 import congReducer from '../reducers/congReducer';
 
 
@@ -34,7 +34,7 @@ class Tru extends Component{
                 <button onClick={()=>{
                     store.dispatch(TruAction(this.state.x, this.state.y));
                 }}>-</button>
-                <strong>Result: {state.truReducer.result}</strong>
+                <strong>Result: {state.calcReducer.result}</strong>
             </div>
         );
     }

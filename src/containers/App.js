@@ -6,6 +6,7 @@ import {store} from '../store/store';
 import Cong from '../components/Cong';
 import Tru from '../components/Tru';
 import SagaEx from '../components/SagaEx';
+import Login from '../components/Login';
 
 import Header from '../components/Header';
 export default class App extends Component {
@@ -21,6 +22,7 @@ export default class App extends Component {
             <Route exact path="/" component={Cong}/>
             <Route path="/cong" component={Cong} />
             <Route path="/tru" component={Tru} />
+            <Route path="/login" component={Login} />
             <Route path="/SagaEx" component={SagaEx} />
             </Switch>
 

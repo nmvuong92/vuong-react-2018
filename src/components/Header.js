@@ -16,6 +16,9 @@ class Header extends Component{
                     <li className="nav-item">
                         <Link to="/SagaEx" className="nav-link">SagaEx</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link to="/login" className="nav-link">Login</Link>
+                    </li>
             </ul>
         );
     };

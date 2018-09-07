@@ -19,7 +19,7 @@ const history = createHistory();
 
 
 const render = () => {
-  fancyLog();
+  //fancyLog();
   return ReactDOM.render(<Provider store={store}>
     <ConnectedRouter history={history}>
       <Router>
@@ -33,7 +33,7 @@ const render = () => {
 render();
 store.subscribe(render);
 registerServiceWorker();
-function fancyLog() {
-  /*console.log("%c Rendered with 👉 👉👇", "background: purple; color: #fff");
-  console.log(store.getState());*/
-}
+/*function fancyLog() {
+  console.log("%c Rendered with 👉 👉👇", "background: purple; color: #fff");
+  console.log(store.getState());
+}*/
