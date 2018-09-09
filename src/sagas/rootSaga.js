@@ -1,8 +1,9 @@
 import { takeLatest, call, put, spawn, all, fork } from "redux-saga/effects";
-import { watcherSaga } from './dogSaga';
+import { dogSaga } from './dogSaga';
+import { authSaga } from './authSaga';
 export default function* rootSaga() {
     yield [
-        fork(watcherSaga), // saga1 can also yield [ fork(actionOne), fork(actionTwo) ]
-        //fork(saga2),
+        fork(dogSaga), // saga1 can also yield [ fork(actionOne), fork(actionTwo) ]
+        fork(authSaga),
     ];
- }
+}

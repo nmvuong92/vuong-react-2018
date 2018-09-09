@@ -2,6 +2,16 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import {store} from '../store/store';
 
+import { authorize } from '../actions/authorizeAction';
+import {  
+  AUTH_REQUEST,
+  AUTH_SUCCESS,
+  AUTH_FAILURE,
+} from '../constaints/login-types'
+
+
+
+//s
 const newField = ({
   input,
   type,
@@ -29,24 +39,28 @@ const email = value =>
 const GatorForm = ({ handleSubmit, reset, pristine, submitting, valid }) => {
   const state = store.getState();
   return (
-    <form onSubmit={handleSubmit((val)=>console.log(val))}>
-      <label htmlFor="first-name">Your first name:</label>
+    <form onSubmit={handleSubmit((val)=>{
+      //submit login proccessing
+      store.dispatch(authorize(val.txt_username,val.txt_password));
+      
+    })} autoComplete="off"> 
+      <label htmlFor="txt_username">Your first name:</label>
       <Field
-        name="firstName"
+        name="txt_username"
         type="text"
         component={newField}
-        id="first-name"
-        placeholder="Benedict"
+        id="txt_username"
+        placeholder="Username"
         validate={[required, longEnough]}
       />
-      <label htmlFor="email">Email:</label>
+      <label htmlFor="txt_password">Password:</label>
       <Field
-        name="email"
-        type="email"
+        name="txt_password"
+        type="password"
         component={newField}
-        id="email"
-        placeholder="benedict@alligator.io"
-        validate={[required, email]}
+        id="txt_password"
+        placeholder="Password"
+        validate={[required]}
       />
       <button type="submit" disabled={!valid || pristine || submitting}>
         Submit
@@ -54,7 +68,6 @@ const GatorForm = ({ handleSubmit, reset, pristine, submitting, valid }) => {
       <button type="button" onClick={reset}>
         reset
       </button>
-      <h1>{state.congReducer.result}</h1>
     </form>
   );
 };
