@@ -27,6 +27,7 @@ function* authorize({ payload: { username, password } }) {
     switch (error.status) {
       case 500: message = 'Internal Server Error'; break;
       case 401: message = 'Invalid credentials'; break;
+      case 204: message = 'No content'; break;
       default: message = 'Something went wrong';
     }
     yield put({ type: AUTH_FAILURE, payload: message });

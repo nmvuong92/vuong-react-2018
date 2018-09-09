@@ -19,7 +19,7 @@ const getMiddleware = () => {
     return applyMiddleware(sagaMiddleware);
   } else {
     // Enable additional logging in non-production environments.
-    return applyMiddleware(sagaMiddleware,logger);
+    return applyMiddleware(sagaMiddleware, logger);
   }
 };
 

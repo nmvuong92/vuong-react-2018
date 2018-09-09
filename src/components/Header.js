@@ -16,29 +16,27 @@ import { store } from '../store/store';
 class Header extends Component{
     constructor(props) {
         super(props);
-    
         this.toggle = this.toggle.bind(this);
         this.state = {
           isOpen: false
         };
     }
     toggle() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
+        store.dispatch({type:"REACTSTRAP_NAVBAR_TOGGLE"});
     }
     render(){
         const state = store.getState();
         const _authed = state.authReducer.islogged;
+        const _isopen = state.reactstrapReducer.navbar_isopen;
         return(
             <div>
                 <Navbar color="light" light expand="md">
                 <NavbarBrand href="/">reactstrap</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
-                <Collapse isOpen={this.state.isOpen} navbar>
+                <Collapse isOpen={_isopen} navbar>
                     <Nav className="ml-auto" navbar>
                     <NavItem>
-                        <NavLink exact  to="/"  className="nav-link">Home</NavLink>
+                        <NavLink exact  to="/"  className="nav-link">Home {_isopen.toString()}</NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink exact to="/calc" className="nav-link"  activeClassName="active">Calc</NavLink>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 
 import {store} from '../store/store';
 //components
@@ -11,30 +11,55 @@ import Admin from '../components/Admin';
 import Logout from '../components/Logout';
 import Home from '../components/Home';
 import Calc from '../components/Calc';
+import NoMatch from '../components/NoMatch';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
+
+
 export default class App extends Component {
+  componentDidMount(){
+    console.log("---App: componentDidMount");
+  }
   constructor(props){
-   
     super(props);
     this.state = {
       authed:false
     }
   }
- 
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      this.onRouteChanged();
+    }
+  }
+  onRouteChanged() {
+    const state = store.getState();
+    const _authed = state.authReducer.islogged;
+    const _isopen = state.reactstrapReducer.navbar_isopen;
+    if(_isopen === true){
+      store.dispatch({type:"REACTSTRAP_NAVBAR_TOGGLE"});
+    }
+  }
+
   render() {
       const state = store.getState(); 
       const _authed = state.authReducer.islogged
+      const _location = this.props.location;
       return (
         <div>
             <Header/>
-            <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route path="/home" component={Home} />
-            <Route path="/calc" component={Calc} />
-            <Route path="/login" component={Login} />
-            <PrivateRoute authed={_authed} path="/logout" component={Logout} />
-            <PrivateRoute authed={_authed} path='/admin' component={Admin} />
-            </Switch>
-            
+            <div className="content">
+
+              <Switch>
+              <Route exact path="/" component={Home}/>
+              <Route path="/home" component={Home} />
+              <Route path="/calc" component={Calc} />
+              <Route path="/login" component={Login} />
+              <PrivateRoute authed={_authed} path="/logout" component={Logout} />
+              <PrivateRoute authed={_authed} path='/admin' component={Admin} />
+              <Route component={NoMatch} />
+              </Switch>
+              
+            </div>
             {/*anymore*/}
         </div>
       );
