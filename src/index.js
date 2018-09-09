@@ -12,11 +12,12 @@ import { ConnectedRouter } from 'react-router-redux';
 import registerServiceWorker from './registerServiceWorker';
 //components
 import App from './containers/App';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-// Create a history of your choosing (we're using a browser history in this case)
-import createHistory from "history/createBrowserHistory";
-const history = createHistory();
+import "./App.css";
 
+
+import history from './history';
 
 const render = () => {
   //fancyLog();

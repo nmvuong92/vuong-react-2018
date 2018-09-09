@@ -5,7 +5,7 @@ import {store} from '../store/store';
 export default class Logout extends Component {
     componentWillMount () {
         store.dispatch(logout());
-        this.props.history.push('/login');
+        this.props.history.push('/home');
     }
 
     render () {

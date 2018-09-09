@@ -18,24 +18,28 @@ class Cong extends Component{
         const state = store.getState(); 
         return(
             <div>
-                <input type="number" placeholder="x" value={this.state.x} onChange={(event)=>{
+                <input className="form-control" type="number" placeholder="x" value={this.state.x} onChange={(event)=>{
                    const new_val = event.target.value;
                    this.setState({
                        x:new_val
                    });
                 }}/>
-                <input type="number" placeholder="y" value={this.state.y} onChange={(event)=>{
+                <input className="form-control" type="number" placeholder="y" value={this.state.y} onChange={(event)=>{
                      const new_val = event.target.value;
                      this.setState({
                          y:new_val
                      });
                 }}/>
-                <button onClick={()=>{
-                    store.dispatch(CongAction(this.state.x,this.state.y));
-                }}>+</button>
-                  <button onClick={()=>{
-                    store.dispatch(TruAction(this.state.x,this.state.y));
-                }}>-</button>
+                <hr/>
+                <div className="btn-group">
+                    <button className="btn btn-success" onClick={()=>{
+                        store.dispatch(CongAction(this.state.x,this.state.y));
+                    }}>+</button>
+                    <button className="btn btn-danger" onClick={()=>{
+                        store.dispatch(TruAction(this.state.x,this.state.y));
+                    }}>-</button>
+                </div>
+               
                 <strong>Result: {state.calcReducer.result}</strong>
             </div>
         );
