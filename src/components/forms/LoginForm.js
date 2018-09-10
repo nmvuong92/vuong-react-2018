@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ Component} from 'react';
 import { reduxForm, Field } from 'redux-form';
 const newField = ({
   input,
@@ -24,40 +24,47 @@ const email = value =>
     ? undefined
     : 'Invalid email!';
 
-const LoginForm = ({ handleSubmit, reset, pristine, submitting, valid, error }) => {
-  return (
-    <form onSubmit={handleSubmit} autoComplete="off"> 
-      <h2>{error}</h2>
-      <label htmlFor="txt_username">Your first name:</label>
-      <Field
-        name="txt_username"
-        type="text"
-        component={newField}
-        id="txt_username"
-        placeholder="Username"
-        validate={[required, longEnough]}
-      />
-      <label htmlFor="txt_password">Password:</label>
-      <Field
-        name="txt_password"
-        type="password"
-        component={newField}
-        id="txt_password"
-        placeholder="Password"
-        validate={[required]}
-      />
-      <div className="btn-group">
-        <button className="btn btn-success"  type="submit" disabled={!valid || pristine || submitting}>
-          Submit
-        </button>
-        <button className="btn btn-default" type="button" onClick={reset}>
-          reset
-        </button>
-      </div>
-    </form>
-  );
+class LoginForm extends Component {
+  render(){
+    const {handleSubmit, reset, pristine, submitting, valid } = this.props;
+    return (
+      <form onSubmit={handleSubmit} autoComplete="off"> 
+        <label htmlFor="txt_username">Your first name:</label>
+        <Field
+          name="txt_username"
+          type="text"
+          component={newField}
+          placeholder="Username"
+          validate={[required, longEnough]}
+        />
+        <label htmlFor="txt_password">Password:</label>
+        <Field
+          name="txt_password"
+          type="password"
+          component={newField}
+          placeholder="Password"
+          validate={[required]}
+        />
+        <div className="btn-group">
+          <button className="btn btn-success"  type="submit" disabled={!valid || pristine || submitting}>
+            Submit
+          </button>
+          <button className="btn btn-default" type="button" onClick={reset}>
+            reset
+          </button>
+        </div>
+      </form>
+    );
+  }
 };
+function mapStateToProps(state, ownProps) {
+  return {
+      initialValues: {
+        txt_username: ownProps.propThatHasFirstName
+      }
+  }
+}
 
 export default reduxForm({
   form: 'loginForm'
-})(LoginForm);
+}, mapStateToProps)(LoginForm);

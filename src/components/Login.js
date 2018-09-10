@@ -21,8 +21,13 @@ export default class Login extends Component{
         const _error = state.authReducer.error;
         return(
             !_authed?<div>
-                <LoginForm error={_error} onSubmit={this.submit}/>
-                <h2>{_error}</h2>
+                <LoginForm propThatHasFirstName="abc" error={_error} onSubmit={this.submit}/>
+                {
+                    _error?
+                    <div className="alert alert-danger" role="alert">
+                    {_error}
+                    </div>:null
+                }
             </div>:
             <Redirect to={{pathname: '/', state: {from: _location}}} />
         );

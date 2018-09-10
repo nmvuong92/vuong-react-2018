@@ -10,3 +10,5 @@ export const API_CALL_FAILURE = "API_CALL_FAILURE";
 
 //
 export const REACTSTRAP_NAVBAR_TOGGLE = "REACTSTRAP_NAVBAR_TOGGLE";
+//
+export const LANG_SET = "LANG_SET";

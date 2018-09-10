@@ -13,12 +13,18 @@ import { store } from '../store/store';
     DropdownToggle,
     DropdownMenu,
     DropdownItem } from 'reactstrap';
+import Languages from './Languages';
+import {FormattedMessage} from 'react-intl';
+import moment from 'moment';
+
 class Header extends Component{
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.state = {
-          isOpen: false
+          isOpen: false,
+          name       : 'Eric',
+          unreadCount: 1000,
         };
     }
     toggle() {
@@ -28,6 +34,8 @@ class Header extends Component{
         const state = store.getState();
         const _authed = state.authReducer.islogged;
         const _isopen = state.reactstrapReducer.navbar_isopen;
+        const { t } = this.props;
+        const {name, unreadCount} = this.state;
         return(
             <div>
                 <Navbar color="light" light expand="md">
@@ -62,6 +70,19 @@ class Header extends Component{
                     </Nav>
                 </Collapse>
                 </Navbar>
+                <Languages {...this.props} />
+                { t('welcome.title', { framework: "react-i18next" }) }
+                <p>
+                    <FormattedMessage
+                        id="welcome"
+                        defaultMessage={`Hello {name}, you have {unreadCount, number} {unreadCount, plural,
+                        one {message}
+                        other {messages}
+                        }`}
+                        values={{name: <b>{name}</b>, unreadCount}}
+                    />
+                </p>
+                <p>{moment(new Date()).format()}</p>
             </div>
         );
     };

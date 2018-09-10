@@ -5,10 +5,6 @@ import {
   AUTH_LOGOUT
 } from '../constaints/login-types'
 
-
-
-
-
 const initialState = {
   token: localStorage.getItem('token'),
   error: null,

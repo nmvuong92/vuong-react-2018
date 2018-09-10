@@ -13,10 +13,11 @@ import Home from '../components/Home';
 import Calc from '../components/Calc';
 import NoMatch from '../components/NoMatch';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { translate, Trans } from 'react-i18next';
+import Languages from '../components/Languages';
 
 
-
-export default class App extends Component {
+class App extends Component {
   componentDidMount(){
     console.log("---App: componentDidMount");
   }
@@ -46,7 +47,7 @@ export default class App extends Component {
       const _location = this.props.location;
       return (
         <div>
-            <Header/>
+            <Header {...this.props}/>
             <div className="content">
 
               <Switch>
@@ -58,10 +59,10 @@ export default class App extends Component {
               <PrivateRoute authed={_authed} path='/admin' component={Admin} />
               <Route component={NoMatch} />
               </Switch>
-              
             </div>
             {/*anymore*/}
         </div>
       );
   }
 }
+export default translate('common')(App);
