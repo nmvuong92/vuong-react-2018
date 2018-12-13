@@ -1,7 +1,5 @@
 import { call, put, takeLatest,fork } from 'redux-saga/effects';
-
 import { AUTH_REQUEST, AUTH_SUCCESS, AUTH_FAILURE } from '../constaints/login-types';
-
 const fetchJSON = (url, options = {}) =>
   new Promise((resolve, reject) => {
     return fetch(url, options)
@@ -10,14 +8,12 @@ const fetchJSON = (url, options = {}) =>
       .then(response => resolve(response))
       .catch(error => reject(error));
   });
-
-function* authorize({ payload: { username, password } }) {
+function* fnAuthorize({ payload: { username, password } }) {
   const options = {
     body: JSON.stringify({ username, password }),
     method: 'POST',
     headers: { 'Content-Type': 'application/json' }
   };
-
   try {
     const { token } = yield call(fetchJSON, "http://localhost:3003/api/signin", options);
     yield put({ type: AUTH_SUCCESS, payload: token });
@@ -34,7 +30,6 @@ function* authorize({ payload: { username, password } }) {
     localStorage.removeItem('token');
   }
 }
-
 export function* authSaga() {
-  yield takeLatest(AUTH_REQUEST, authorize);
+  yield takeLatest(AUTH_REQUEST, fnAuthorize);
 }

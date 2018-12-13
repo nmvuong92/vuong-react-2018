@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, NavLink  } from 'react-router-dom';
 import { store } from '../store/store';
-  import {
+import {
     Collapse,
     Navbar,
     NavbarToggler,
@@ -14,7 +14,6 @@ import { store } from '../store/store';
     DropdownMenu,
     DropdownItem } from 'reactstrap';
 import Languages from './Languages';
-import {FormattedMessage} from 'react-intl';
 import moment from 'moment';
 
 class Header extends Component{
@@ -72,16 +71,6 @@ class Header extends Component{
                 </Navbar>
                 <Languages {...this.props} />
                 { t('welcome.title', { framework: "react-i18next" }) }
-                <p>
-                    <FormattedMessage
-                        id="welcome"
-                        defaultMessage={`Hello {name}, you have {unreadCount, number} {unreadCount, plural,
-                        one {message}
-                        other {messages}
-                        }`}
-                        values={{name: <b>{name}</b>, unreadCount}}
-                    />
-                </p>
                 <p>{moment(new Date()).format()}</p>
             </div>
         );

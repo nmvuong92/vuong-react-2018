@@ -2,17 +2,14 @@ import React, {Component} from 'react';
 import LoginForm from './forms/LoginForm';
 import {store } from '../store/store';
 import { BrowserRouter as Router, Route, Switch, Redirect  } from 'react-router-dom';
-
 import { authorize } from '../actions/authorizeAction';
 export default class Login extends Component{  
     redirectToHome(){
         this.props.history.push('/');
     }
-
     submit = val => {
         store.dispatch(authorize(val.txt_username,val.txt_password));
     }
-
     render() {
         console.log(this.props);
         const state = store.getState();
