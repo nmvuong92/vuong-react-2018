@@ -22,7 +22,7 @@ class Header extends Component{
         this.toggle = this.toggle.bind(this);
         this.state = {
           isOpen: false,
-          name       : 'Eric',
+          name       : 'vuong.nguyenminh',
           unreadCount: 1000,
         };
     }
