@@ -12,6 +12,7 @@ import Logout from '../components/Logout';
 import Home from '../components/Home';
 import Calc from '../components/Calc';
 import NoMatch from '../components/NoMatch';
+import Book from '../components/Book';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { translate, Trans } from 'react-i18next';
 import Languages from '../components/Languages';
@@ -54,6 +55,7 @@ class App extends Component {
               <Route path="/home" component={Home} />
               <Route path="/calc" component={Calc} />
               <Route path="/login" component={Login} />
+              <Route path="/books" component={Book} />
               <PrivateRoute authed={_authed} path="/logout" component={Logout} />
               <PrivateRoute authed={_authed} path='/admin' component={Admin} />
               <Route component={NoMatch} />

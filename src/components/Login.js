@@ -12,7 +12,6 @@ export default class Login extends Component{
         store.dispatch(authorize(val.txt_username,val.txt_password));
     }
     render() {
-        console.log(this.props);
         const state = store.getState();
         const _authed = state.authReducer.islogged;
         const _location = this.props.location;

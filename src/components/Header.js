@@ -66,6 +66,12 @@ class Header extends Component{
                                     <NavLink exact to="/logout" className="nav-link"  activeClassName="active">logout</NavLink>
                                 </NavItem>:null
                             }
+                            {
+                                _authed?
+                                <NavItem>
+                                    <NavLink exact to="/books" className="nav-link"  activeClassName="active">books</NavLink>
+                                </NavItem>:null
+                            }
                     </Nav>
                 </Collapse>
                 </Navbar>
